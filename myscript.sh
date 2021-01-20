@@ -1,3 +1,3 @@
 #! /bin/bash
-echo " Build success"
+echo " Build success with wbhook trigger"
 
