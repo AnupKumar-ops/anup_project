@@ -24,7 +24,7 @@ pipeline {
     }
     post {
                 failure {
-                    emailext body: "build ${BUILD_NO} failed", subject: 'fail build', to: 'kumar.abcdef.anup@gmail.com'
+                    emailext body: "build ${BUILD_NUMBER} failed", subject: 'fail build', to: 'kumar.abcdef.anup@gmail.com'
                 }
     }
 }
