@@ -1,3 +1,9 @@
+def VendorName              = "Cisco"
+def Product                 = "War/JarFiles"
+def Version                 = "vnf_v1.1"
+def ArtifactoryUrl          = "http://localhost:8082/artifactory"
+def ArtifactoryCredentials = "jfrog"
+
 pipeline {
     agent any
     
@@ -26,7 +32,27 @@ pipeline {
                 junit keepLongStdio: true, testResults: '**/target/surefire-reports/TEST-*.xml'
                 //step([$class: 'JUnitResultArchiver', checksName: '', testResults: '**/target/surefire-reports/TEST-*.xml'])
             }
-        }    
+        }
+        stage('store to artifactory') {
+            steps {
+              script {
+                 def server = Artifactory.newServer url: "${ArtifactoryUrl}", credentialsId: "${ArtifactoryCredentials}"
+                 def uploadSpec = """{
+                                      "files": [
+                                          {
+                                             "pattern": "${WORKSPACE}/*.war",
+                                             "target": "${VendorName}/${Product}/${Version}/"
+                                          },
+                                          {
+                                             "pattern": "${WORKSPACE}/*.jar",
+                                             "target": "${VendorName}/${Product}/${Version}/"
+                                          }   
+                                       ]
+                                  }"""
+                server.upload spec: uploadSpec
+             }
+          }
+     }
     }
     post {
                 failure {
