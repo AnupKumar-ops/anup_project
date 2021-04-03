@@ -24,12 +24,13 @@ pipeline {
         stage('junit test reports') {
             steps {
                 junit keepLongStdio: true, testResults: '**/target/surefire-reports/TEST-*.xml'
+                step([$class: 'JUnitResultArchiver', checksName: '', testResults: '**/target/surefire-reports/TEST-*.xml'])
             }
         }    
     }
     post {
                 failure {
-                    emailext body: "build ${BUILD_NUMBER} failed", subject: 'fail build', to: 'kumar.abcdef.anup@gmail.com'
+                    emailext body: "job ${JOB_NAME} with build ${BUILD_NUMBER} failed. Check console output at ${BUILD_URL}", subject: 'fail build', to: 'kumar.abcdef.anup@gmail.com'
                 }
     }
 }
