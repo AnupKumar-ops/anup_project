@@ -1,5 +1,5 @@
 def VendorName              = "Cisco"
-def Product                 = "War/JarFiles"
+def Product                 = "War/Jar"
 def Version                 = "vnf_v1.1"
 def ArtifactoryUrl          = "http://localhost:8082/artifactory"
 def ArtifactoryCredentials = "jfrog"
@@ -40,11 +40,11 @@ pipeline {
                  def uploadSpec = """{
                                       "files": [
                                           {
-                                             "pattern": "${WORKSPACE}/*.war",
+                                             "pattern": "${WORKSPACE}/**/target/*.war",
                                              "target": "${VendorName}/${Product}/${Version}/"
                                           },
                                           {
-                                             "pattern": "${WORKSPACE}/*.jar",
+                                             "pattern": "${WORKSPACE}/**/target/*.jar",
                                              "target": "${VendorName}/${Product}/${Version}/"
                                           }   
                                        ]
@@ -52,7 +52,7 @@ pipeline {
                 server.upload spec: uploadSpec
              }
           }
-     }
+       }
     }
     post {
                 failure {
