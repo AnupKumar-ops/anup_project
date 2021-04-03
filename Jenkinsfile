@@ -23,7 +23,7 @@ pipeline {
         }
         stage('junit test reports') {
             steps {
-                junit keepLongStdio: true, testResults: '**/target/surefire-reports/TEST-*.xml'
+                unit keepLongStdio: true, testResults: '**/target/surefire-reports/TEST-*.xml'
                 //step([$class: 'JUnitResultArchiver', checksName: '', testResults: '**/target/surefire-reports/TEST-*.xml'])
             }
         }    
