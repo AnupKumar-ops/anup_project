@@ -1,7 +1,7 @@
 def VendorName              = "Cisco"
 def Product                 = "War/Jar"
 def Version                 = "vnf_v1.1"
-def ArtifactoryUrl          = "http://localhost:8082/artifactory"
+def ArtifactoryUrl          = "http://jenkins-master:8082/artifactory"
 def ArtifactoryCredentials = "jfrog"
 
 pipeline {
