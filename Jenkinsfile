@@ -20,10 +20,12 @@ pipeline {
                     sh 'mvn clean install'
                 }    
             }
-         }
+        }
         stage('junit test reports') {
             steps {
                 junit keepLongStdio: true, testResults: '**/target/surefire-reports/TEST-*.xml'
+            }
+        }    
     }
     post {
                 failure {
