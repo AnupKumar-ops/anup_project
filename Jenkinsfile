@@ -1,5 +1,5 @@
 def VendorName              = "Cisco"
-def Product                 = "War/Jar"
+def Product                 = "WarJar"
 def Version                 = "vnf_v1.1"
 def ArtifactoryUrl          = "http://jenkins-master:8082/artifactory"
 def ArtifactoryCredentials = "jfrog"
