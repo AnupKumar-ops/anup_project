@@ -41,11 +41,11 @@ pipeline {
                                       "files": [
                                           {
                                              "pattern": "${WORKSPACE}/**/target/*.war",
-                                             "target": "${VendorName}/${Product}/${Version}/"
+                                             "target": "maven-repo/${VendorName}/${Product}/${Version}/"
                                           },
                                           {
                                              "pattern": "${WORKSPACE}/**/target/*.jar",
-                                             "target": "${VendorName}/${Product}/${Version}/"
+                                             "target": "maven-repo/${VendorName}/${Product}/${Version}/"
                                           }   
                                        ]
                                   }"""
