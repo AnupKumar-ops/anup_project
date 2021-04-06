@@ -58,7 +58,7 @@ pipeline {
                 tool name: 'maven-3.6.3', type: 'maven'
                 withMaven(maven: 'maven-3.6.3') {
                     withSonarQubeEnv(credentialsId: 'sonar', installationName: 'SonarQube', envOnly: true) {
-                        sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.10:sonar'
+                        sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.7.0.1746:sonar'
                     }
                 }    
             }
