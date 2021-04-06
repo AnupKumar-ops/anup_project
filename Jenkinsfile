@@ -55,8 +55,11 @@ pipeline {
        }
         stage('SonarQube quality check') {
             steps {
-                withSonarQubeEnv(credentialsId: 'sonar', installationName: 'SonarQube', envOnly: true) {
-                    sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.10:sonar'
+                tool name: 'maven-3.6.3', type: 'maven'
+                withMaven(maven: 'maven-3.6.3') {
+                    withSonarQubeEnv(credentialsId: 'sonar', installationName: 'SonarQube', envOnly: true) {
+                        sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.10:sonar'
+                    }
                 }    
             }
         }        
