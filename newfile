@@ -28,6 +28,7 @@ pipeline {
                     server.download spec: downloadSpec
                }
             }
+        }    
         agent {
             dockerfile {
                 filename 'Dockerfile'
@@ -42,4 +43,3 @@ pipeline {
         }
     }
 }       
-            
