@@ -34,7 +34,7 @@ pipeline {
               agent {
                     dockerfile {
                        filename 'Dockerfile.build'
-                       additionalBuildArgs  "--build-arg WORKSPACE=${WORKSPACE}"
+                       additionalBuildArgs  "--build-arg WORKSPACE=${WORKSPACE}/${VendorName}/${Product}/${Version}/"
                        args '-p 8081:8080'
                        
                     }
