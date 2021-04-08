@@ -1,4 +1,4 @@
 FROM tomcat:8.0
 MAINTAINER anup_kumar
-ARG WORKSPACE_PATH=/var/lib/jenkins/workspace/newapp/
-COPY $WORKSPACE_PATH/webapp.war /usr/local/tomcat/webapps/
+ARG path_to_war=/var/
+COPY $path_to_war/webapp.war /usr/local/tomcat/webapps/
