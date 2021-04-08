@@ -37,9 +37,8 @@ pipeline {
         stage('access app from docker qa slave agent') {
               agent {
                     dockerfile {
-                       filename 'Dockerfile.build'
                        additionalBuildArgs  "--build-arg WORKSPACE=/var/tmp/"
-                       args '-p 8081:8080'
+                       args '-p 8083:8080'
                        
                     }
               }
