@@ -35,11 +35,11 @@ pipeline {
                 args '-p 8081:8080'
             }
         }
-        stage('access app')
+        stage('access app') {
               steps {
                   sh 'curl localhost:8081'
               }    
         }
     }
-            
+}       
             
