@@ -28,8 +28,12 @@ pipeline {
                     server.download spec: downloadSpec
                }
             }
-        }    
-        
+        }
+        stage('copy webapp.war to home') {
+             steps {
+                 sh " cp ${WORKSPACE}/${VendorName}/${Product}/${Version}/webapp.war /home/labuser/"
+              }
+        }      
         stage('access app from docker qa slave agent') {
               agent {
                     dockerfile {
