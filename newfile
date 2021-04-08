@@ -30,7 +30,7 @@ pipeline {
             }
         }    
         
-        stage('access app') {
+        stage('access app from docker qa slave agent') {
               agent {
                     dockerfile {
                        filename 'Dockerfile.build'
