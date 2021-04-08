@@ -5,7 +5,7 @@ def ArtifactoryUrl          = "http://jenkins-master:8082/artifactory"
 def ArtifactoryCredentials = "jfrog"
 
 pipeline {
-    agent none
+    agent any
   
     stages {
         stage('SCM Checkout') {
