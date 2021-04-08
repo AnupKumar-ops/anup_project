@@ -33,7 +33,7 @@ pipeline {
         stage('access app') {
               agent {
                     dockerfile {
-                       filename 'Dockerfile'
+                       filename 'Dockerfile.build'
                        additionalBuildArgs  "--build-arg WORKSPACE=${WORKSPACE}"
                        args '-p 8081:8080'
                        
