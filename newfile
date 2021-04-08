@@ -29,14 +29,15 @@ pipeline {
                }
             }
         }    
-        agent {
-            dockerfile {
-                filename 'Dockerfile'
-                additionalBuildArgs  "--build-arg WORKSPACE=${WORKSPACE}"
-                args '-p 8081:8080'
-            }
-        }
+        
         stage('access app') {
+              agent {
+                    dockerfile {
+                       filename 'Dockerfile'
+                       additionalBuildArgs  "--build-arg WORKSPACE=${WORKSPACE}"
+                       args '-p 8081:8080'
+                    }
+              }
               steps {
                   sh 'curl localhost:8081'
               }    
