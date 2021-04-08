@@ -31,7 +31,7 @@ pipeline {
         }    
         
         stage('access app') {
-              agent {
+              agent any {
                     dockerfile {
                        filename 'Dockerfile'
                        additionalBuildArgs  "--build-arg WORKSPACE=${WORKSPACE}"
