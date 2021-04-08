@@ -31,14 +31,14 @@ pipeline {
         }
         stage('copy webapp.war to home') {
              steps {
-                 sh " cp ${WORKSPACE}/${VendorName}/${Product}/${Version}/webapp.war /home/labuser/"
+                 sh " cp ${WORKSPACE}/${VendorName}/${Product}/${Version}/webapp.war /var/tmp/"
               }
         }      
         stage('access app from docker qa slave agent') {
               agent {
                     dockerfile {
                        filename 'Dockerfile.build'
-                       additionalBuildArgs  "--build-arg WORKSPACE=${WORKSPACE}/${VendorName}/${Product}/${Version}/"
+                       additionalBuildArgs  "--build-arg WORKSPACE=/var/tmp/"
                        args '-p 8081:8080'
                        
                     }
