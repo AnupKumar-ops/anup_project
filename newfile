@@ -1,1 +1,44 @@
-hello, Test for auto trigger jenkins job
+def VendorName              = "Cisco"
+def Product                 = "WarJar"
+def Version                 = "vnf_v1.1"
+def ArtifactoryUrl          = "http://jenkins-master:8082/artifactory"
+def ArtifactoryCredentials = "jfrog"
+
+pipeline {
+    agent none
+  
+    stages {
+        stage('SCM Checkout') {
+            steps {
+                 git 'https://github.com/AnupKumar-ops/anup_project.git'
+            }
+        }
+        stage('download from artifactory') {
+            steps {
+               script {
+                   def server = Artifactory.newServer url: "${ArtifactoryUrl}", credentialsId: "${ArtifactoryCredentials}"
+                   def downloadSpec = """{
+                                  "files": [
+                                              {
+                                                 "pattern": "maven-repo/${VendorName}/${Product}/${Version}/*.war",
+                                                  "target": "${WORKSPACE}/"
+                                              }
+                                           ]
+                    }"""
+                    server.download spec: downloadSpec
+               }
+            }
+        agent {
+            dockerfile {
+                filename 'Dockerfile'
+                args '-p 8081:8080'
+            }
+        }
+        stage('access app')
+              steps {
+                  sh 'curl localhost:8081'
+              }    
+        }
+    }
+            
+            
