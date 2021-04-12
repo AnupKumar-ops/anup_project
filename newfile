@@ -31,20 +31,22 @@ pipeline {
         }
         stage('copy webapp.war to home') {
              steps {
-                 sh " cp ${WORKSPACE}/${VendorName}/${Product}/${Version}/webapp.war /var/tmp/"
+                 sh " cp ${WORKSPACE}/${VendorName}/${Product}/${Version}/SampleWebApp.war ${WORKSPACE}"
               }
         }      
         stage('access app from docker qa slave agent') {
               agent {
-                    dockerfile {
-                       additionalBuildArgs  "--build-arg WORKSPACE=/var/tmp/"
+                    docker {
+                       image 'anup/tomcat:1.0'
                        args '-p 8083:8080'
                        
                     }
               }
               steps {
                   sh 'curl localhost:8080'
+                  sh 'curl  -u admin:admin localhost:8080/manager/html'
+                  sh 'curl -u admin:admin localhost:8080/SampleWebApp
               }    
-        }
+         }
     }
-}       
+ }
