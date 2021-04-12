@@ -43,7 +43,7 @@ pipeline {
                     }
               }
               steps {
-                  sh 'curl localhost'
+                  sh 'pwd'
                 
               }
         }
