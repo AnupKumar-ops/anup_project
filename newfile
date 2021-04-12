@@ -43,7 +43,7 @@ pipeline {
                     }
               }
               steps {
-                  sh 'pwd'
+                  sh 'localhost:8080'
                 
               }
         }
