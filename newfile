@@ -29,7 +29,7 @@ pipeline {
                }
             }
         }
-        stage('copy webapp.war to home') {
+        stage('copy SampleWebapp.war to home') {
              steps {
                  sh " cp ${WORKSPACE}/${VendorName}/${Product}/${Version}/SampleWebApp.war ${WORKSPACE}"
               }
