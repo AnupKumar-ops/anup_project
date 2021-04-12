@@ -1,4 +1,5 @@
-FROM tomcat
-MAINTAINER anup_kumar
-ARG path_to_war=/var/
-COPY $path_to_war/webapp.war /usr/local/tomcat/webapps/
+FROM tomcat:8.0
+LABEL maintainer=anup
+ADD SampleWebApp.war /usr/local/tomcat/webapps/
+EXPOSE 8080
+CMD ["catalina.sh", "run"]
