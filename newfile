@@ -43,7 +43,7 @@ pipeline {
                     }
               }
               steps {
-                  curl localhost:8080
+                  sh 'curl localhost:8080'
                 
               }
         }
